@@ -1,0 +1,167 @@
+services:
+  df-data-lineage:
+    image: df-data-lineage:latest
+    container_name: df-data-lineage
+    hostname: df-data-lineage
+    ports:
+      - "9091:9090"  # API
+    networks:
+      - dfnet
+    # user: ${APP_INFRA_USER_NAME}:${APP_INFRA_USER_GROUP_NAME}
+    volumes:
+      - type: bind
+        source: /nas
+        target: /nas
+      - type: bind
+        source: /home/ec2-user/workspaces/df-data-lineage/.env.aws_ec2_container
+        target: /df-data-lineage/.env.aws_ec2_container
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/.env.default
+        target: /packages/df-config/.env.default
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/cfg/global_config.dev.yaml
+        target: /packages/df-config/cfg/global_config.dev.yaml
+    # env_file:
+    #   - .env.spark
+    entrypoint: ["dl-app-api", "--app_host_pattern", "aws_ec2_container"]   
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9090" ]
+      interval: 600s
+      timeout: 3s
+      retries: 1
+
+  df-data-profile:
+    image: df-data-profile:latest
+    container_name: df-data-profile
+    hostname: df-data-profile
+    ports:
+      - "9092:9090"  # API
+    networks:
+      - dfnet
+    # user: ${APP_INFRA_USER_NAME}:${APP_INFRA_USER_GROUP_NAME}
+    volumes:
+      - type: bind
+        source: /nas
+        target: /nas
+      - type: bind
+        source: /home/ec2-user/workspaces/df-data-profile/.env.aws_ec2_container
+        target: /df-data-profile/.env.aws_ec2_container
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/.env.default
+        target: /packages/df-config/.env.default
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/cfg/global_config.dev.yaml
+        target: /packages/df-config/cfg/global_config.dev.yaml
+    # env_file:
+    #   - .env.spark
+    entrypoint: ["dp-app-api", "--app_host_pattern", "aws_ec2_container"]   
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9090" ]
+      interval: 600s
+      timeout: 3s
+      retries: 1
+
+  df-data-quality:
+    image: df-data-quality:latest
+    container_name: df-data-quality
+    hostname: df-data-quality
+    ports:
+      - "9093:9090"  # API
+    networks:
+      - dfnet
+    # user: ${APP_INFRA_USER_NAME}:${APP_INFRA_USER_GROUP_NAME}
+    volumes:
+      - type: bind
+        source: /nas
+        target: /nas
+      - type: bind
+        source: /home/ec2-user/workspaces/df-data-quality/.env.aws_ec2_container
+        target: /df-data-quality/.env.aws_ec2_container
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/.env.default
+        target: /packages/df-config/.env.default
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/cfg/global_config.dev.yaml
+        target: /packages/df-config/cfg/global_config.dev.yaml
+      # - type: bind
+      #   source: /home/ec2-user/workspaces/df-data-quality/src/dq_app/dq_app_core.py
+      #   target: /venv/lib/python3.12/site-packages/dq_app/dq_app_core.py
+    # env_file:
+    #   - .env.spark
+    entrypoint: ["dq-app-api", "--app_host_pattern", "aws_ec2_container"]   
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9090" ]
+      interval: 600s
+      timeout: 3s
+      retries: 1
+
+  df-data-quality-ml:
+    image: df-data-quality-ml:latest
+    container_name: df-data-quality-ml
+    hostname: df-data-quality-ml
+    ports:
+      - "9094:9090"  # API
+    networks:
+      - dfnet
+    # user: ${APP_INFRA_USER_NAME}:${APP_INFRA_USER_GROUP_NAME}
+    volumes:
+      - type: bind
+        source: /nas
+        target: /nas
+      - type: bind
+        source: /home/ec2-user/workspaces/df-data-quality-ml/.env.aws_ec2_container
+        target: /df-data-quality-ml/.env.aws_ec2_container
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/.env.default
+        target: /packages/df-config/.env.default
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/cfg/global_config.dev.yaml
+        target: /packages/df-config/cfg/global_config.dev.yaml
+    # env_file:
+    #   - .env.spark
+    entrypoint: ["dqml-app-api", "--app_host_pattern", "aws_ec2_container"]   
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9090" ]
+      interval: 600s
+      timeout: 3s
+      retries: 1
+
+  df-data-recon:
+    image: df-data-recon:latest
+    container_name: df-data-recon
+    hostname: df-data-recon
+    ports:
+      - "9095:9090"  # API
+    networks:
+      - dfnet
+    # user: ${APP_INFRA_USER_NAME}:${APP_INFRA_USER_GROUP_NAME}
+    volumes:
+      - type: bind
+        source: /nas
+        target: /nas
+      - type: bind
+        source: /home/ec2-user/workspaces/df-data-recon/.env.aws_ec2_container
+        target: /df-data-recon/.env.aws_ec2_container
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/.env.default
+        target: /packages/df-config/.env.default
+      - type: bind
+        source: /home/ec2-user/workspaces/df-config/cfg/global_config.dev.yaml
+        target: /packages/df-config/cfg/global_config.dev.yaml
+      # - type: bind
+      #   source: /home/ec2-user/workspaces/df-data-recon/src/dr_app/dr_app_core.py
+      #   target: /venv/lib/python3.12/site-packages/dr_app/dr_app_core.py
+      # - type: bind
+      #   source: /home/ec2-user/workspaces/utils/src/utils/spark_io.py
+      #   target: /venv/lib/python3.12/site-packages/utils/spark_io.py
+    # env_file:
+    #   - .env.spark
+    entrypoint: ["dr-app-api", "--app_host_pattern", "aws_ec2_container"]   
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9090" ]
+      interval: 600s
+      timeout: 3s
+      retries: 1
+
+networks:
+  dfnet:
