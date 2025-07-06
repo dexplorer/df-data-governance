@@ -40,6 +40,7 @@ test = [
   "pylint",
   "black",
   "ipython",
+  "isort", 
 ]
 all-dev = [
   "gov[my-packages-local, test]"
@@ -56,3 +57,14 @@ Documentation = "https://readthedocs.org"
 Repository = "https://github.com/dexplorer/df-data-governance.git"
 Issues = "https://github.com/dexplorer/df-data-governance/issues"
 Changelog = "https://github.com/dexplorer/df-data-governance/blob/master/CHANGELOG.md"
+
+[tool.black]
+#line-length = 79
+
+[tool.isort]
+profile = "black"
+#line_length = 79
+known_third_party = ["django"]  # Add other third-party libraries as needed
+known_first_party = ["gov", "utils", "metadata"]  # change it for the name of your django project
+sections = ["FUTURE","STDLIB","THIRDPARTY","FIRSTPARTY","LOCALFOLDER"]
+src_paths = ["src", "gov"]  # Adjust paths as per your project structure

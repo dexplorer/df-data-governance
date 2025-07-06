@@ -13,8 +13,8 @@ services:
         source: /nas
         target: /nas
       - type: bind
-        source: /home/ec2-user/workspaces/df-data-lineage/.env.aws_ec2_container
-        target: /df-data-lineage/.env.aws_ec2_container
+        source: /home/ec2-user/workspaces/df-data-lineage/app_env.aws_ec2_container.dev.env
+        target: /df-data-lineage/app_env.aws_ec2_container.dev.env
       - type: bind
         source: /home/ec2-user/workspaces/df-config/.env.default
         target: /packages/df-config/.env.default
@@ -44,8 +44,8 @@ services:
         source: /nas
         target: /nas
       - type: bind
-        source: /home/ec2-user/workspaces/df-data-profile/.env.aws_ec2_container
-        target: /df-data-profile/.env.aws_ec2_container
+        source: /home/ec2-user/workspaces/df-data-profile/app_env.aws_ec2_container.dev.env
+        target: /df-data-profile/app_env.aws_ec2_container.dev.env
       - type: bind
         source: /home/ec2-user/workspaces/df-config/.env.default
         target: /packages/df-config/.env.default
@@ -75,8 +75,8 @@ services:
         source: /nas
         target: /nas
       - type: bind
-        source: /home/ec2-user/workspaces/df-data-quality/.env.aws_ec2_container
-        target: /df-data-quality/.env.aws_ec2_container
+        source: /home/ec2-user/workspaces/df-data-quality/app_env.aws_ec2_container.dev.env
+        target: /df-data-quality/app_env.aws_ec2_container.dev.env
       - type: bind
         source: /home/ec2-user/workspaces/df-config/.env.default
         target: /packages/df-config/.env.default
@@ -109,8 +109,8 @@ services:
         source: /nas
         target: /nas
       - type: bind
-        source: /home/ec2-user/workspaces/df-data-quality-ml/.env.aws_ec2_container
-        target: /df-data-quality-ml/.env.aws_ec2_container
+        source: /home/ec2-user/workspaces/df-data-quality-ml/app_env.aws_ec2_container.dev.env
+        target: /df-data-quality-ml/app_env.aws_ec2_container.dev.env
       - type: bind
         source: /home/ec2-user/workspaces/df-config/.env.default
         target: /packages/df-config/.env.default
@@ -140,8 +140,8 @@ services:
         source: /nas
         target: /nas
       - type: bind
-        source: /home/ec2-user/workspaces/df-data-recon/.env.aws_ec2_container
-        target: /df-data-recon/.env.aws_ec2_container
+        source: /home/ec2-user/workspaces/df-data-recon/app_env.aws_ec2_container.dev.env
+        target: /df-data-recon/app_env.aws_ec2_container.dev.env
       - type: bind
         source: /home/ec2-user/workspaces/df-config/.env.default
         target: /packages/df-config/.env.default

@@ -19,4 +19,8 @@ format:
 	black src/*/*.py &&\
 	black tests/*.py
 
+	isort src/${APP}/*.py &&\
+	isort src/*/*.py &&\
+	isort tests/*.py
+
 local-all: install-dev lint format test
